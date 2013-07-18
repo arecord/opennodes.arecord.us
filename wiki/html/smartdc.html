@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <title>smartdc</title>
+    <meta name="keywords" content="smartdc">
+
+    <link rel="stylesheet" href="../stylesheets/styles.css">
+    <link rel="stylesheet" href="../stylesheets/pygment_trac.css">
+    <script type="text/javascript" src="../javascripts/jquery-1.9.1.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <style>
+    html, body {
+      margin: 0;
+      text-align: center;
+    }
+    </style>
+    <script>
+    $(document).ready(function(){   
+      $('.code').each(function(v){
+        var path = $(this).attr('data-js');
+        $(this).load('../../examples/'+path);
+        $(this).before('<h3>See:<a href="/examples/'+path+'">/examples/'+path+'</a></h3>');
+      });
+    });
+    </script>
+  </head>
+  <body>
+  <div style="width:100%" align="center">
+  <div align="left" style="width:960px">
+    <img src="/images/wikitpage.png" width="100px" onclick="document.location='/'" title="Back to Home"/>
+    <img src="../images/back.png" width="40px" align="right" onclick="document.location='../index.html?page=smartdc.md'" title="Back to prev page"/>
+    <hr/>
+  </div>
+  <div align="left" style="text-align:left; width:960px;">
+    <h1>smartdc module</h1>
+<p>smartdc是一套Joyent原廠提供連線Joyent Cloud Platform - SmartDataCenter的套件，裡面提供CLI與node.js的操作方法，可以直接與cloudapi進行溝通，並且達到管理cloud machine相關的動作。</p>
+<h2>套件資訊</h2>
+<div class="pkginfo" data-module-name="smartdc" data-show="version,dependencies"></div>
+
+<h2>Installation</h2>
+<p>安裝上，因為要預設把CLI也安裝到環境變數，所以加上&quot;-g&quot;參數，讓npm將CLI tools發佈在環境變數上。</p>
+<pre><code>npm install smartdc -g</code></pre>
+<p>安裝完後，你將會得到下面的指令：</p>
+<pre><code>sdc-addmachinetags            sdc-getdataset                sdc-listmachines
+sdc-createinstrumentation     sdc-getinstrumentation        sdc-listmachinesnapshots
+sdc-createkey                 sdc-getkey                    sdc-listmachinetags
+sdc-createmachine             sdc-getmachine                sdc-listpackages
+sdc-createmachinesnapshot     sdc-getmachinemetadata        sdc-rebootmachine
+sdc-deleteinstrumentation     sdc-getmachinesnapshot        sdc-resizemachine
+sdc-deletekey                 sdc-getmachinetag             sdc-setup
+sdc-deletemachine             sdc-getpackage                sdc-startmachine
+sdc-deletemachinemetadata     sdc-listdatacenters           sdc-startmachinefromsnapshot
+sdc-deletemachinesnapshot     sdc-listdatasets              sdc-stopmachine
+sdc-deletemachinetag          sdc-listinstrumentations      sdc-updatemachinemetadata
+sdc-describeanalytics         sdc-listkeys</code></pre>
+<p>關於smartdc官方的文件，請參考：<a href="http://sdcdoc.joyent.com/sdcdoc/display/sdc/API+Documentation">http://sdcdoc.joyent.com/sdcdoc/display/sdc/API+Documentation</a></p>
+<h2>Sample Usage</h2>
+<pre class="code" data-js="smartdc/test-smartdc.js"></pre>
+
+  </div>
+
+  <div style="width:960px">
+  <hr/>
+  Powered by OpenNodes
+  </div>
+  </div>
+
+  </body>
+</html>

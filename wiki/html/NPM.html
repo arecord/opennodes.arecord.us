@@ -1,0 +1,279 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <title>NPM</title>
+    <meta name="keywords" content="NPM">
+
+    <link rel="stylesheet" href="../stylesheets/styles.css">
+    <link rel="stylesheet" href="../stylesheets/pygment_trac.css">
+    <script type="text/javascript" src="../javascripts/jquery-1.9.1.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <style>
+    html, body {
+      margin: 0;
+      text-align: center;
+    }
+    </style>
+    <script>
+    $(document).ready(function(){   
+      $('.code').each(function(v){
+        var path = $(this).attr('data-js');
+        $(this).load('../../examples/'+path);
+        $(this).before('<h3>See:<a href="/examples/'+path+'">/examples/'+path+'</a></h3>');
+      });
+    });
+    </script>
+  </head>
+  <body>
+  <div style="width:100%" align="center">
+  <div align="left" style="width:960px">
+    <img src="/images/wikitpage.png" width="100px" onclick="document.location='/'" title="Back to Home"/>
+    <img src="../images/back.png" width="40px" align="right" onclick="document.location='../index.html?page=NPM.md'" title="Back to prev page"/>
+    <hr/>
+  </div>
+  <div align="left" style="text-align:left; width:960px;">
+    <h1>NPM使用</h1>
+<h2>最初的學習 - Help Page</h2>
+<p>想了解NPM的第一個步驟...看看協助頁面，可以直接打&quot;npm --help&quot;來顯示可以協助的部份</p>
+<pre><code>npm --help
+
+Usage: npm &lt;command&gt;
+
+where &lt;command&gt; is one of:
+    add-user, adduser, apihelp, author, bin, bugs, c, cache,
+    completion, config, ddp, dedupe, deprecate, docs, edit,
+    explore, faq, find, find-dupes, get, help, help-search,
+    home, i, info, init, install, isntall, la, link, list, ll,
+    ln, login, ls, outdated, owner, pack, prefix, prune,
+    publish, r, rb, rebuild, remove, restart, rm, root,
+    run-script, s, se, search, set, show, shrinkwrap, star,
+    start, stop, submodule, tag, test, tst, un, uninstall,
+    unlink, unpublish, unstar, up, update, version, view,
+    whoami
+
+npm &lt;cmd&gt; -h     quick help on &lt;cmd&gt;
+npm -l           display full usage info
+npm faq          commonly asked questions
+npm help &lt;term&gt;  search for help on &lt;term&gt;
+npm help npm     involved overview
+
+Specify configs in the ini-formatted file:
+    /Users/simonsu/.npmrc
+or on the command line via: npm &lt;command&gt; --key value
+Config info can be viewed via: npm help config
+
+npm@1.1.65 /usr/local/lib/node_modules/npm</code></pre>
+<h2>套件的搜尋</h2>
+<p>NPM提供指令方式的關鍵字搜尋功能，可以透過在指令列模式透過npm search來達到搜尋套件的目的：</p>
+<pre><code># npm search noder
+npm http GET https://registry.npmjs.org/-/all/since?stale=update_after&amp;startkey=1368448152633
+npm http 200 https://registry.npmjs.org/-/all/since?stale=update_after&amp;startkey=1368448152633
+NAME           DESCRIPTION                                                   AUTHOR           DATE              KEYWORDS
+geonoder       A NodeJS client for geocoding/reverse address lookup with plug-in services. =dexterp37 2013-05-13 17:09  geocoder geocoding cach
+noder          Node.js Simple Web Utility                                    =peihsinsu       2013-05-13 15:37  http server web
+noderelict     Instrumentation for node                                      =blindsey        2011-08-28 20:53  node instrumentation performanc
+noderest       Noderest a restify-mongo framework                            =jaisonjustus    2012-11-29 19:51  api rest framework
+noderiaktools  Backup and restore for node json documents                    =stevewillcock   2013-02-14 21:17  riak
+noderpc        A framework for building distributed services with NodeJS     =brstgt =lociii  2011-05-18 09:54  rpc rmi service distributed
+noderpt        Node.js Report Utility                                        =peihsinsu       2013-03-29 01:26  report</code></pre>
+<h2>檢視套件詳細設定(package.json)</h2>
+<p>使用npm show可以列出該套件的詳細資訊，大部分資訊記錄於套件底下的package.json，另外有包含程式上版的資訊喔！下面是執行範例，其中time欄位就是個版本publish的時間：</p>
+<pre><code># npm show noder
+npm http GET https://registry.npmjs.org/noder
+npm http 304 https://registry.npmjs.org/noder
+
+{ name: &#39;noder&#39;,
+  description: &#39;Node.js Simple Web Utility&#39;,
+  &#39;dist-tags&#39;: { latest: &#39;0.0.6&#39; },
+  versions:
+   [ &#39;0.0.1&#39;,
+     &#39;0.0.2&#39;,
+     &#39;0.0.3&#39;,
+     &#39;0.0.4&#39;,
+     &#39;0.0.5&#39;,
+     &#39;0.0.6&#39; ],
+  maintainers: &#39;peihsinsu &lt;simonsu.mail@gmail.com&gt;&#39;,
+  time:
+   { &#39;0.0.1&#39;: &#39;2013-03-29T02:13:21.133Z&#39;,
+     &#39;0.0.2&#39;: &#39;2013-04-07T18:28:47.124Z&#39;,
+     &#39;0.0.3&#39;: &#39;2013-05-04T11:06:21.644Z&#39;,
+     &#39;0.0.4&#39;: &#39;2013-05-04T11:24:01.389Z&#39;,
+     &#39;0.0.5&#39;: &#39;2013-05-13T13:54:20.591Z&#39;,
+     &#39;0.0.6&#39;: &#39;2013-05-13T15:37:19.113Z&#39; },
+  author: &#39;Simon Su &lt;simonsu.mail@gmail.com&gt;&#39;,
+  repository:
+   { type: &#39;git&#39;,
+     url: &#39;https://github.com/peihsinsu/noder&#39; },
+  version: &#39;0.0.6&#39;,
+  contributors: &#39;Simon Su &lt;simonsu.mail@gmail.com&gt;&#39;,
+  dependencies:
+   { underscore: &#39;*&#39;,
+     log4js: &#39;*&#39;,
+     commander: &#39;*&#39; },
+  keywords: [ &#39;http&#39;, &#39;server&#39;, &#39;web&#39; ],
+  main: &#39;index&#39;,
+  engines: { node: &#39;&gt;= 0.8.0&#39; },
+  directories: { bin: &#39;./bin&#39;, lib: &#39;./lib&#39; },
+  optionalDependencies: {},
+  bin: { nhelp: &#39;bin/nhelp&#39;, noder: &#39;bin/noder&#39; },
+  readmeFilename: &#39;README.md&#39;,
+  dist:
+   { shasum: &#39;1b7df135f2ac6a3ff1253105dab66fd634bf5cc0&#39;,
+     tarball: &#39;http://registry.npmjs.org/noder/-/noder-0.0.6.tgz&#39; } }</code></pre>
+<h2>Npm進階操作-套件描述檔</h2>
+<p>Npm全名Node Package Management，是一個Node專屬的套件管理工具，每個package都有自己的套件描述檔，該檔案是以json方式編輯，您可以用node view <package name>來檢是該套件的描述檔案，該檔案實際位置是位於套件中根目錄的package.json中，而package.json的由來是由CommonJS Package/1.0的規格書(specification)中開始定義的。下面展示一些取得套件描述的使用方式：</p>
+<pre><code>$ npm view mail
+npm http GET https://registry.npmjs.org/mail
+npm http 200 https://registry.npmjs.org/mail
+
+{ name: &#39;mail&#39;,
+  description: &#39;This SMTP client library for Node.JS helps you send email safely and easily.&#39;,
+  &#39;dist-tags&#39;: { latest: &#39;0.2.3&#39; },
+  versions: 
+   [ &#39;0.1.0&#39;,
+     &#39;0.1.1&#39;,
+     &#39;0.2.1&#39;,
+     &#39;0.2.2&#39;,
+     &#39;0.2.3&#39; ],
+  maintainers: &#39;weaver &lt;ben@orangesoda.net&gt;&#39;,
+  author: &#39;Ben Weaver &lt;ben@orangesoda.net&gt;&#39;,
+  time: 
+   { &#39;0.1.0&#39;: &#39;2011-03-28T20:36:45.470Z&#39;,
+     &#39;0.1.1&#39;: &#39;2011-03-28T20:36:45.470Z&#39;,
+     &#39;0.2.1&#39;: &#39;2011-03-28T20:36:45.470Z&#39;,
+     &#39;0.2.2&#39;: &#39;2011-03-28T21:40:23.031Z&#39;,
+     &#39;0.2.3&#39;: &#39;2011-06-14T20:01:10.032Z&#39; },
+  version: &#39;0.2.3&#39;,
+  contributors: [],
+  dependencies: { reparse: &#39;&gt;= 0.1.2&#39; },
+  keywords: 
+   [ &#39;email&#39;,
+     &#39;mail&#39;,
+     &#39;message&#39;,
+     &#39;address&#39;,
+     &#39;smtp&#39;,
+     &#39;tls&#39;,
+     &#39;auth&#39; ],
+  directories: { lib: &#39;./lib&#39; },
+  main: &#39;./lib/index&#39;,
+  scripts: {},
+  bin: {},
+  engines: { node: &#39;&gt;= 0.4.0&#39; },
+  dist: 
+   { shasum: &#39;1eddfe74bb38d7ebff6211aa903ba6beaf96ec24&#39;,
+     tarball: &#39;http://registry.npmjs.org/mail/-/mail-0.2.3.tgz&#39; },
+  devDependencies: {},
+  optionalDependencies: {} }</code></pre>
+<p>如果想要單看某個屬性的值，可使用npm view <package name> [parameter key]來檢視該屬性值，例如mail套件中有dist的屬性，可以用下面指令取出該屬性之值：</p>
+<pre><code>$ npm view mail dist
+npm http GET https://registry.npmjs.org/mail
+npm http 304 https://registry.npmjs.org/mail
+
+{ shasum: &#39;1eddfe74bb38d7ebff6211aa903ba6beaf96ec24&#39;,
+  tarball: &#39;http://registry.npmjs.org/mail/-/mail-0.2.3.tgz&#39; }</code></pre>
+<p>而因為繼承了json得特性，npm中可以使用object.parameter的方式，更進階取得該物件中的參數值：</p>
+<pre><code>$ npm view mail dist.tarball
+http://registry.npmjs.org/mail/-/mail-0.2.3.tgz</code></pre>
+<p>以上這些取值方式，可以很方便的在批次自動化的程式中提供幫助噢！</p>
+<p>Npm套件描述檔相關說明文件可以使用npm help json來檢視：</p>
+<pre><code>$ npm help json
+
+NPM-JSON(1)                                                        NPM-JSON(1)
+
+NAME
+       npm-json -- Specifics of npm&#39;s package.json handling
+
+DESCRIPTION
+       This  document  is  all  you need to know about what&#39;s required in your
+       package.json file.  It must be  actual  JSON,  not  just  a  JavaScript
+       object literal.
+
+       A  lot  of  the  behavior described in this document is affected by the
+       config settings described in npm help config.
+
+DEFAULT VALUES
+       npm will default some values based on package contents.
+
+       o   &quot;scripts&quot;: {&quot;start&quot;: &quot;node server.js&quot;}
+
+           If there is a server.js file in the root of your package, then  npm
+           will default the start command to node server.js.
+
+       o   &quot;scripts&quot;:{&quot;preinstall&quot;:  &quot;node-waf clean || true; node-waf config-
+           ure build&quot;}
+: ... (Skip)</code></pre>
+<p>其他npm package description中的參數也都有支援npm help文件，例如package.json中的bin描述文件如下：</p>
+<pre><code>$ npm help bin
+
+NPM-BIN(1)                                                          NPM-BIN(1)
+
+NAME
+       npm-bin -- Display npm bin folder
+
+SYNOPSIS
+       npm bin
+
+DESCRIPTION
+       Print the folder where npm will install executables.
+
+SEE ALSO
+       o   npm help prefix
+
+       o   npm help root
+
+       o   npm help folders
+
+       o   npm help config
+
+                                  March 2012                        NPM-BIN(1)
+(END)</code></pre>
+<p>更多的npm help說明文件，可以使用npm help <key word>來檢視，例如您想要找跟script相關的文件，可以透過npm help script來尋找，右邊將會該key word的hits數，可供搜尋的參考：</p>
+<pre><code>$ npm help script
+Top hits for &quot;script&quot;
+————————————————————————————————————————————————————————————————————————————————
+npm help scripts                      script:45
+npm help json                         script:23
+npm help config                       script:20
+npm help developers                   script:9
+npm help index                        script:7
+npm help run-script                   script:7
+npm help restart                      script:6
+npm help semver                       script:1
+...(Skip)
+npm help completion                   script:1
+npm help whoami                       script:1
+————————————————————————————————————————————————————————————————————————————————
+(run with -l or --long to see more context)</code></pre>
+<h2>Npm進階操作-Npm搜尋</h2>
+<p>Npm的另一個特異功能就是可以透過一些工具作搜尋，您不用怕在茫茫網海當中，找不到想要的套件...</p>
+<p>Npm搜尋指令：npm search <key word></p>
+<pre><code>$ npm search mail
+npm http GET https://registry.npmjs.org/-/all/since?stale=update_after&amp;startkey=1333211345000
+npm http 200 https://registry.npmjs.org/-/all/since?stale=update_after&amp;startkey=1333211345000
+NAME                  DESCRIPTION
+amazon-ses            Simple Amazon SES Mailer
+aws-lib               Extensible Node.js library for the Amazon Web Services API
+baunsu                Library to parse and detect bounced emails
+cloudmailin           cloudmailin testing service
+...(Skip)
+winston-mail2         A mail transport for winston</code></pre>
+<h2>Npm網站搜尋：<a href="http://search.npmjs.org">http://search.npmjs.org</a></h2>
+<p>您如我有瀏覽器，可以使用Npm提供的網站搜尋工具，進入npm官方網站：<a href="http://npmjs.org/">http://npmjs.org/</a> 後，點選下面的Search for Packages鏈結，就可以打開Npm的搜尋頁面。或是直接鍵入搜尋頁面的網址，搜尋頁面的網址為：<a href="http://search.npmjs.org">http://search.npmjs.org</a> 。</p>
+<p>當然，您也可以發佈Npm套件，相關的說明...容後再述，可先參考Npm Publish Docs：<a href="http://npmjs.org/doc/publish.html">http://npmjs.org/doc/publish.html</a></p>
+
+  </div>
+
+  <div style="width:960px">
+  <hr/>
+  Powered by OpenNodes
+  </div>
+  </div>
+
+  </body>
+</html>

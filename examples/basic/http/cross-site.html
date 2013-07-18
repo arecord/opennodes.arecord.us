@@ -1,0 +1,9 @@
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script>
+$(document).ready(function(){
+  $.getJSON('http://your.server.address:port/', function(data){
+    $('#r').html(data.result);
+  });
+});
+</script>
+<h1>Server response: <span id="r"></span></h1>

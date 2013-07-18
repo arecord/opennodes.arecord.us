@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <title>NodeJSResource</title>
+    <meta name="keywords" content="NodeJSResource">
+
+    <link rel="stylesheet" href="../stylesheets/styles.css">
+    <link rel="stylesheet" href="../stylesheets/pygment_trac.css">
+    <script type="text/javascript" src="../javascripts/jquery-1.9.1.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <style>
+    html, body {
+      margin: 0;
+      text-align: center;
+    }
+    </style>
+    <script>
+    $(document).ready(function(){   
+      $('.code').each(function(v){
+        var path = $(this).attr('data-js');
+        $(this).load('../../examples/'+path);
+        $(this).before('<h3>See:<a href="/examples/'+path+'">/examples/'+path+'</a></h3>');
+      });
+    });
+    </script>
+  </head>
+  <body>
+  <div style="width:100%" align="center">
+  <div align="left" style="width:960px">
+    <img src="/images/wikitpage.png" width="100px" onclick="document.location='/'" title="Back to Home"/>
+    <img src="../images/back.png" width="40px" align="right" onclick="document.location='../index.html?page=NodeJSResource.md'" title="Back to prev page"/>
+    <hr/>
+  </div>
+  <div align="left" style="text-align:left; width:960px;">
+    <h1>學習資源介紹</h1>
+<h2>官方網站</h2>
+<ul>
+<li>NodeJS官網，提供作者的教學與原廠文件資訊: <a href="http://nodejs.org">http://nodejs.org</a></li>
+</ul>
+<h2>台灣官方網站</h2>
+<ul>
+<li>NodeJS.tw為台灣官網，提供相當多的學習資源與討論: <a href="http://nodejs.tw">http://nodejs.tw</a></li>
+<li>由NodeJS.tw官方夥伴編輯的第一本Node.js中文電子書：<a href="http://book.nodejs.tw/">http://book.nodejs.tw/</a></li>
+</ul>
+<h2>Node.js相關文件</h2>
+<ul>
+<li>Node線上論壇：<a href="http://groups.google.com/group/nodejs/browse_thread/thread/e213b94e43df60ab">http://groups.google.com/group/nodejs/browse_thread/thread/e213b94e43df60ab</a></li>
+<li>Dreamer&#39;s Lab(有詳盡的Node與Javascript的教學)：<a href="http://dreamerslab.com/blog/tw/node-js-basics/">http://dreamerslab.com/blog/tw/node-js-basics/</a></li>
+</ul>
+<h2>JavaScript相關文件</h2>
+<ul>
+<li>良葛葛的JavaScript筆記：<a href="http://caterpillar.onlyfun.net/Gossip/JavaScript/Closure.html">http://caterpillar.onlyfun.net/Gossip/JavaScript/Closure.html</a></li>
+<li>小爪哇的初發(JavaScript相關)：<a href="http://ace33022.blogspot.com/2010/10/javascript.html">http://ace33022.blogspot.com/2010/10/javascript.html</a></li>
+<li>Javascript Kit: <a href="http://www.javascriptkit.com/javatutors/rfunction2.shtml">http://www.javascriptkit.com/javatutors/rfunction2.shtml</a></li>
+</ul>
+
+  </div>
+
+  <div style="width:960px">
+  <hr/>
+  Powered by OpenNodes
+  </div>
+  </div>
+
+  </body>
+</html>

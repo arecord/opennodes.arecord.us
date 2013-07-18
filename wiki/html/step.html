@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <title>step</title>
+    <meta name="keywords" content="step">
+
+    <link rel="stylesheet" href="../stylesheets/styles.css">
+    <link rel="stylesheet" href="../stylesheets/pygment_trac.css">
+    <script type="text/javascript" src="../javascripts/jquery-1.9.1.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <style>
+    html, body {
+      margin: 0;
+      text-align: center;
+    }
+    </style>
+    <script>
+    $(document).ready(function(){   
+      $('.code').each(function(v){
+        var path = $(this).attr('data-js');
+        $(this).load('../../examples/'+path);
+        $(this).before('<h3>See:<a href="/examples/'+path+'">/examples/'+path+'</a></h3>');
+      });
+    });
+    </script>
+  </head>
+  <body>
+  <div style="width:100%" align="center">
+  <div align="left" style="width:960px">
+    <img src="/images/wikitpage.png" width="100px" onclick="document.location='/'" title="Back to Home"/>
+    <img src="../images/back.png" width="40px" align="right" onclick="document.location='../index.html?page=step.md'" title="Back to prev page"/>
+    <hr/>
+  </div>
+  <div align="left" style="text-align:left; width:960px;">
+    <h1>step module</h1>
+<p>step模組是Node.js使用來達成循序操縱的一個方式，使用的操作方式較為直覺，唯一需要注意的地方是function內的參數scope及其傳遞的方式。</p>
+<h2>套件資訊</h2>
+<div class="pkginfo" data-module-name="step" data-show="version,dependencies"></div>
+
+<h2>Installation</h2>
+<pre><code>npm install step</code></pre>
+<h2>Sample Usage</h2>
+<p>簡單的順序範例</p>
+<pre class="code" data-js="step/test-step.js"></pre>
+
+<p>有Callback的時候，也可以順利的執行</p>
+<pre class="code" data-js="step/test-step2.js"></pre>
+  </div>
+
+  <div style="width:960px">
+  <hr/>
+  Powered by OpenNodes
+  </div>
+  </div>
+
+  </body>
+</html>

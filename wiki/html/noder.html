@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <title>noder</title>
+    <meta name="keywords" content="noder">
+
+    <link rel="stylesheet" href="../stylesheets/styles.css">
+    <link rel="stylesheet" href="../stylesheets/pygment_trac.css">
+    <script type="text/javascript" src="../javascripts/jquery-1.9.1.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <style>
+    html, body {
+      margin: 0;
+      text-align: center;
+    }
+    </style>
+    <script>
+    $(document).ready(function(){   
+      $('.code').each(function(v){
+        var path = $(this).attr('data-js');
+        $(this).load('../../examples/'+path);
+        $(this).before('<h3>See:<a href="/examples/'+path+'">/examples/'+path+'</a></h3>');
+      });
+    });
+    </script>
+  </head>
+  <body>
+  <div style="width:100%" align="center">
+  <div align="left" style="width:960px">
+    <img src="/images/wikitpage.png" width="100px" onclick="document.location='/'" title="Back to Home"/>
+    <img src="../images/back.png" width="40px" align="right" onclick="document.location='../index.html?page=noder.md'" title="Back to prev page"/>
+    <hr/>
+  </div>
+  <div align="left" style="text-align:left; width:960px;">
+    <h1>noder</h1>
+<p>noder是一套簡易的HTTP Server，透過指令列啟動該服務後，執行之資料夾以下的檔案則可以透過HTTP的方式存取，可以當做測試HTML, CSS時使用。</p>
+<h2>套件資訊</h2>
+<div class="pkginfo" data-module-name="noder" data-show="version,dependencies"></div>
+
+<h2>Installation</h2>
+<pre><code>npm install noder -g</code></pre>
+<p>noder提供了下面操作：</p>
+<pre><code># noder --help
+
+  Usage: noder [options]
+
+  Options:
+
+    -h, --help                     output usage information
+    -V, --version                  output the version number
+    -i, --host address &lt;ip&gt;        Specific host, like 192.168.1.1, default is all ip listened
+    -p, --port &lt;port&gt;              Specific port, like 80,3000,8080, default is 1337
+    -l, --loglevel &lt;loglevel&gt;      Specific log level, generally like: FATAL, ERROR, WARN, INFO, DEBUG, TRACE
+    -a, --allow &lt;allow file type&gt;  Specific the allowed file types that seprate by &quot;,&quot;, default is all
+    -d, --deny &lt;deny file type&gt;    Specific the denied file types that seprate by &quot;,&quot;, default is none</code></pre>
+<h2>Sample Usage</h2>
+<pre><code> SimonAIR in ~/project/opennodes
+± |gh-pages ✗| → noder
+[2013-05-22 18:34:09.639] [INFO] [default] - Noder version: 0.0.7
+[2013-05-22 18:34:09.641] [INFO] [default] - Server running at http://127.0.0.1:1337/
+[2013-05-22 18:34:09.642] [INFO] [default] - Using log level: INFO (If you want to change, try &quot;export LOV_LEVEL=INFO&quot; in linux or &quot;set LOG_LEVEL=INFO&quot; in windows)</code></pre>
+
+  </div>
+
+  <div style="width:960px">
+  <hr/>
+  Powered by OpenNodes
+  </div>
+  </div>
+
+  </body>
+</html>

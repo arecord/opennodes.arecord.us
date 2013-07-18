@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <title>Install</title>
+    <meta name="keywords" content="Install">
+
+    <link rel="stylesheet" href="../stylesheets/styles.css">
+    <link rel="stylesheet" href="../stylesheets/pygment_trac.css">
+    <script type="text/javascript" src="../javascripts/jquery-1.9.1.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <style>
+    html, body {
+      margin: 0;
+      text-align: center;
+    }
+    </style>
+    <script>
+    $(document).ready(function(){   
+      $('.code').each(function(v){
+        var path = $(this).attr('data-js');
+        $(this).load('../../examples/'+path);
+        $(this).before('<h3>See:<a href="/examples/'+path+'">/examples/'+path+'</a></h3>');
+      });
+    });
+    </script>
+  </head>
+  <body>
+  <div style="width:100%" align="center">
+  <div align="left" style="width:960px">
+    <img src="/images/wikitpage.png" width="100px" onclick="document.location='/'" title="Back to Home"/>
+    <img src="../images/back.png" width="40px" align="right" onclick="document.location='../index.html?page=Install.md'" title="Back to prev page"/>
+    <hr/>
+  </div>
+  <div align="left" style="text-align:left; width:960px;">
+    <h1>Install - GitHub Page Hosted</h1>
+<h3>Step 1: Fork wikitpage</h3>
+<p>You can fork this project <a href="https://github.com/peihsinsu/wikitpage/fork_select">HERE</a>.<br>This repository include some default page md files, default project folders and architecture for build the framework.</p>
+<ul>
+<li>README.md: This is the file you see now.</li>
+<li>index.html: The enter page that you can configure a document.location javascript to redirect to the wiki page.</li>
+<li>wikitpage.js: The control file that specify where the md file folder, welcome page, menu page and your github information.</li>
+<li>mdfiles/: The default md file folder, that you can use another folder by change the wikitpage.js</li>
+<li>wiki/: The default wiki framework folder.</li>
+</ul>
+<p>After fork, check the branch in &quot;gh-pages&quot;. And after about 15-30 minutes, you can view your wikitpage at :</p>
+<pre><code>http://[your_github_name].github.com/[project_name].</code></pre>
+<p>PS: If you have different default branch, please check the gh-pages repository again.</p>
+<h3>Step 2: Config github repository</h3>
+<p>Go to your project and open the $project/wikitpage.js and edit the content follow the description:</p>
+<pre><code># vi $project/wikitpage.js
+var config={
+  user:&#39;peihsinsu&#39;,
+  project:&#39;wikitpage&#39;,
+  md_file_path: &#39;../mdfiles&#39;,
+  md_folder_name: &#39;mdfiles&#39;, 
+  welcome_page: &#39;Main.md&#39;,
+  menu_page: &#39;Menu.md&#39;
+};</code></pre>
+<ul>
+<li>config.user: The github owner or group name, that will use for build edit link</li>
+<li>config.project:The github project name, that will use for build edit link</li>
+<li>config.md_file_path:The md file folder that for read md file use</li>
+<li>config.md_folder_name: The md folder name, use for open the edit url from github</li>
+<li>config.welcome_page: The welcome page, default location that access from root url</li>
+<li>config.menu_page: The menu page, that shows in the left of the page</li>
+</ul>
+<h3>Step 3: Check and Use</h3>
+<p>After configure the wikitpage.js, you can access the wiki using the link that Step1 says.<br>If any problem about GitHub Page, you can follow the <a href="https://help.github.com/articles/creating-project-pages-manually">Github Page Instruction</a> to check the use of github page.</p>
+<h1>Install - Using Other Web Server</h1>
+<p>Using Github... or you can clone this project and start by nginx, httpd, node.js or other http web server... (Descript bellow...)</p>
+<pre><code># git clone git@github.com:peihsinsu/wikitpage.git [YOUR PROJECT NAME]</code></pre>
+<h3>Using Node.js Start WikitPage</h3>
+<ul>
+<li>Install <a href="http://expressjs.com/">express.js</a>, and initial project using express command<pre><code># cd [YOUR PROJECT NAME] &amp;&amp; express . &amp;&amp; npm install</code></pre>
+</li>
+<li><p>Linking the static resource<br>You need to update the static resource config for using node.js to open the site.</p>
+<pre><code># vi app.js</code></pre>
+<p>In the app.js file (the default start point of express.js), and update the app.configure file that change the static resource path:</p>
+<pre><code>app.configure(function(){
+app.set(&#39;port&#39;, process.env.PORT || 1337);
+...(skip)
+app.use(express.static(&#39;/the/path/to/wikitpage&#39;));
+});</code></pre>
+</li>
+<li><p>Start the app</p>
+<pre><code># node app.js</code></pre>
+</li>
+<li><p>View the page</p>
+<pre><code>http://your.ip.address:port/index.html</code></pre>
+</li>
+</ul>
+<h3>Using Nginx or HTTPD Start WikitPage</h3>
+<ul>
+<li><p>Copy the cloned folder ($project) to the www folder ($httpd-www) that you defined in the Nginx or HTTPD</p>
+<pre><code># cp $project $httpd-www</code></pre>
+<p>And there will exist a folder: $httpd-www/$project</p>
+</li>
+<li><p>View the site</p>
+<pre><code>http://your.ip.address:port/$project/index.html</code></pre>
+</li>
+</ul>
+
+  </div>
+
+  <div style="width:960px">
+  <hr/>
+  Powered by OpenNodes
+  </div>
+  </div>
+
+  </body>
+</html>

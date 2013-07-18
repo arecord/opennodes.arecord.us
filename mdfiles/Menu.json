@@ -1,0 +1,97 @@
+[
+  { "name": "Node.js基礎介紹",
+    "type": "folder",
+    "nodes":[
+      {"type":"node","link":"BasicNodeJS.md","name":"Node.js入門"},
+      {"type":"node","link":"BasicOperation.md","name":"迴圈與判斷"},
+      {"type":"node","link":"NodeJSEnv.md","name":"Node.js與環境"},
+      {"type":"node","link":"AboutIO.md","name":"FileSystem"},
+      {"type":"node","link":"CmdExec.md","name":"Exec"},
+      {"type":"node","link":"SocketProgramming.md","name":"Socket"},
+      {"type":"node","link":"REPL.md","name":"REPL"},
+      {"type":"node","link":"Closure.md","name":"Closure"},
+      {"type":"node","link":"JsonOperate.md","name":"JSON操作"},
+      {"type":"node","link":"NodeInBash.md","name":"Node.js與Bash混用"},
+      {"type":"node","link":"NodeJSResource.md","name":"學習資源介紹"},
+      {"type":"node","link":"LoopInNonBlock.md","name":"Loop in non-Block"},
+      {"type":"node","link":"TimeoutAndInterval.md","name":"Timeout & Interval"}
+    ]
+  },
+  { "name": "HTTP(S) Modules",
+    "type": "folder",
+    "nodes":[
+      {"type":"node","link":"request.md","name":"request"},
+      {"type":"node","link":"restify.md","name":"restify"},
+      {"type":"node","link":"restClient.md","name":"restClient"},
+      {"type":"node","link":"connect.md","name":"connect"},
+      {"type":"node","link":"soap.md","name":"soap"}
+    ]
+  },
+  { "name": "Async Modules",
+    "type": "folder",
+    "nodes":[
+      {"type":"node","link":"step.md","name":"step"},
+      {"type":"node","link":"node-promise.md","name":"node-promise"},
+      {"type":"node","link":"q.md","name":"q"}
+    ]
+  },
+  { "name": "Web Framework",
+    "type": "folder",
+    "nodes":[
+      {"type":"node","link":"express.md","name":"Express"},
+      {"type":"node","link":"socket.io.md","name":"Socket.io"}
+    ]
+  },
+  { "name": "Network",
+    "type": "folder",
+    "nodes":[
+      {"type":"node","link":"domain.md","name":"domain"},
+      {"type":"node","link":"native-dns.md","name":"native-dns"},
+      {"type":"node","link":"jsdom.md","name":"jsdom"},
+      {"type":"node","link":"nodemailer.md","name":"nodemailer"}
+    ]
+  },
+  { "name": "Utility",
+    "type": "folder",
+    "nodes":[
+      {"type":"node","link":"jsontool.md","name":"jsontool"},
+      {"type":"node","link":"underscore.md","name":"underscore"},
+      {"type":"node","link":"node-uuid.md","name":"node-uuid"},
+      {"type":"node","link":"noder.md","name":"noder"},
+      {"type":"node","link":"ttyjs.md","name":"tty.js"},
+      {"type":"node","link":"xml2js.md","name":"xml2js"},
+      {"type":"node","link":"riak-js.md","name":"riak-js"},
+      {"type":"node","link":"log4js.md","name":"log4js"}
+    ]
+  },
+  { "name": "CLI tools",
+    "type": "folder",
+    "nodes":[
+      {"type":"node","link":"commander.md","name":"commander"}
+    ]
+  },
+  { "name": "NoSQL",
+    "type": "folder",
+    "nodes":[
+      {"type":"node","link":"cradle.md","name":"cradle"}
+    ]
+  },
+  { "name": "MySQL",
+    "type": "folder",
+    "nodes":[
+      {"type":"node","link":"mysql.md","name":"mysql"}
+    ]
+  },
+  { "name": "CloudAPI",
+    "type": "folder",
+    "nodes":[
+      {"type":"node","link":"smartdc.md","name":"smartdc"}
+    ]
+  },
+  { "name": "Other",
+    "type": "folder",
+    "nodes":[
+      {"type":"node","link":"CrossSiteSolv.md","name":"Access-Control-Allow-Origin"}
+    ]
+  }
+]

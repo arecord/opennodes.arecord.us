@@ -1,16 +1,39 @@
 {
-  "name": "application-name",
-  "version": "0.0.1",
-  "private": true,
-  "scripts": {
-    "start": "node app.js"
+  "name": "opennodes",
+  "description": "Node.js Modules Introduction",
+  "version": "0.0.4",
+  "author": {
+    "name": "Simon Su",
+    "email": "simonsu.mail@gmail.com"
   },
-  "engines": {
-    "node": "0.10.x",
-    "npm":  "1.2.x"
-  },
+  "contributors": [
+    {
+      "name": "Simon Su",
+      "email": "simonsu.mail@gmail.com"
+    }
+  ],
   "dependencies": {
-    "express": "3.3.0",
-    "jade": "*"
-  }
+    "underscore":"*",
+    "log4js":"*",
+    "commander":"*"
+  },
+  "keywords": [
+    "http","server","web"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/peihsinsu/noder"
+  },
+  "main": "index",
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "directories": {
+    "bin": "./bin",
+    "lib": "./lib"
+  },
+  "optionalDependencies": {},
+  "_engineSupported": true,
+  "_defaultsLoaded": true,
+  "_from": "Simon"
 }

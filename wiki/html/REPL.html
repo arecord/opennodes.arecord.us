@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <title>REPL</title>
+    <meta name="keywords" content="REPL">
+
+    <link rel="stylesheet" href="../stylesheets/styles.css">
+    <link rel="stylesheet" href="../stylesheets/pygment_trac.css">
+    <script type="text/javascript" src="../javascripts/jquery-1.9.1.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <style>
+    html, body {
+      margin: 0;
+      text-align: center;
+    }
+    </style>
+    <script>
+    $(document).ready(function(){   
+      $('.code').each(function(v){
+        var path = $(this).attr('data-js');
+        $(this).load('../../examples/'+path);
+        $(this).before('<h3>See:<a href="/examples/'+path+'">/examples/'+path+'</a></h3>');
+      });
+    });
+    </script>
+  </head>
+  <body>
+  <div style="width:100%" align="center">
+  <div align="left" style="width:960px">
+    <img src="/images/wikitpage.png" width="100px" onclick="document.location='/'" title="Back to Home"/>
+    <img src="../images/back.png" width="40px" align="right" onclick="document.location='../index.html?page=REPL.md'" title="Back to prev page"/>
+    <hr/>
+  </div>
+  <div align="left" style="text-align:left; width:960px;">
+    <h1>Read-Eval-Print-Loop (REPL)</h1>
+<p>REPL，全稱：Read-Eval-Print-Loop，關於Node.js的REPL進階應用部份，借用官方網站Documents內的一段程式碼來說明。<br>REPL是一個直譯式互動執行的介面，透過這個介面，您可以打入任何Node.js的程式碼，視窗將在按下Enter時候回覆執行結果。許多腳本語言都有提供類似介面供開發人員測試或執行簡單的程式碼。<br>在此範例中，將會啓動一個Unix的Socket服務端口、一個TCP Socket的服務端口，並在執行視窗也開啓一個stdin的服務窗口，從這三個地方執行的Node程式片斷，都會反應在原執行視窗上...</p>
+<pre><code>var net = require(&quot;net&quot;),
+    repl = require(&quot;repl&quot;);
+
+connections = 0;
+
+repl.start(&quot;node via stdin&gt; &quot;);
+
+net.createServer(function (socket) {
+  connections += 1;
+  repl.start(&quot;node via Unix socket&gt; &quot;, socket);
+}).listen(&quot;/tmp/node-repl-sock&quot;);
+
+net.createServer(function (socket) {
+  connections += 1;
+  repl.start(&quot;node via TCP socket&gt; &quot;, socket);
+}).listen(5001);</code></pre>
+<p>執行此Node程式後，可以telnet該服務位置的5001 port來連接服務，執行如下：<br>原執行視窗/Server:</p>
+<pre><code>$ node test.js 
+node via stdin&gt;</code></pre>
+<p>Client from Local using TCP socket:</p>
+<pre><code>$ telnet localhost 5001
+Trying 127.0.0.1...
+Connected to localhost.
+Escape character is &#39;^]&#39;.
+node via TCP socket&gt; console.log(&#39;hello&#39;);
+undefined
+node via TCP socket&gt;</code></pre>
+<p>Client from Local using Unix socket:</p>
+<pre><code>$ telnet /tmp/node-repl-sock 
+Trying /tmp/node-repl-sock...
+Connected to (null).
+Escape character is &#39;^]&#39;.
+node via Unix socket&gt; console.log(&#39;hello&#39;)
+undefined
+node via Unix socket&gt;</code></pre>
+<p>原執行視窗(Server)的回應:</p>
+<pre><code>$ node test.js 
+node via stdin&gt; hello</code></pre>
+
+  </div>
+
+  <div style="width:960px">
+  <hr/>
+  Powered by OpenNodes
+  </div>
+  </div>
+
+  </body>
+</html>

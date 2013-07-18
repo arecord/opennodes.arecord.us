@@ -1,0 +1,150 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <title>express</title>
+    <meta name="keywords" content="express">
+
+    <link rel="stylesheet" href="../stylesheets/styles.css">
+    <link rel="stylesheet" href="../stylesheets/pygment_trac.css">
+    <script type="text/javascript" src="../javascripts/jquery-1.9.1.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <style>
+    html, body {
+      margin: 0;
+      text-align: center;
+    }
+    </style>
+    <script>
+    $(document).ready(function(){   
+      $('.code').each(function(v){
+        var path = $(this).attr('data-js');
+        $(this).load('../../examples/'+path);
+        $(this).before('<h3>See:<a href="/examples/'+path+'">/examples/'+path+'</a></h3>');
+      });
+    });
+    </script>
+  </head>
+  <body>
+  <div style="width:100%" align="center">
+  <div align="left" style="width:960px">
+    <img src="/images/wikitpage.png" width="100px" onclick="document.location='/'" title="Back to Home"/>
+    <img src="../images/back.png" width="40px" align="right" onclick="document.location='../index.html?page=express.md'" title="Back to prev page"/>
+    <hr/>
+  </div>
+  <div align="left" style="text-align:left; width:960px;">
+    <h1>Express</h1>
+<p>Express是一套Node.js的Web Framework，以EJS或Jade(或其他)為View Engine將Node.js的MVC做一個完整的封裝，學Node.js的朋友不能錯過！</p>
+<h2>套件資訊</h2>
+<div class="pkginfo" data-module-name="express" data-show="version,dependencies"></div>
+
+<h2>Installation</h2>
+<p>一般安裝Express時，我們會需要使用到其下的CLI工具來產生專案，所以需要帶入-g的參數來安裝到環境中。</p>
+<pre><code>npm install express -g</code></pre>
+<h2>Sample Usage</h2>
+<p>使用express來產生專案</p>
+<pre><code>express [專案名稱] &amp;&amp; cd [專案名稱] &amp;&amp; npm install</code></pre>
+<p>上面指令使用&amp;&amp;是Linux來串接指令的方式，原則上上面有三個指令</p>
+<ul>
+<li>express [專案名稱]: 使用express指令來產生某個專案</li>
+<li>cd [專案名稱]: 切換到該專案資料夾下</li>
+<li>npm install: 特該專案將相依的package進行安裝</li>
+</ul>
+<h3>以下為實際執行範例</h3>
+<pre><code>$ express ExpressPrj
+create : ExpressPrj
+create : ExpressPrj/package.json
+create : ExpressPrj/app.js
+create : ExpressPrj/views
+create : ExpressPrj/views/layout.jade
+create : ExpressPrj/views/index.jade
+create : ExpressPrj/routes
+create : ExpressPrj/routes/index.js
+create : ExpressPrj/public
+create : ExpressPrj/public/stylesheets
+create : ExpressPrj/public/stylesheets/style.css
+create : ExpressPrj/public/javascripts
+create : ExpressPrj/public/images
+dont forget to install dependencies:
+$ cd ExpressPrj &amp;&amp; npm install</code></pre>
+<p>上面指令完成後，會產生一個以剛剛給定的名稱的資料匣，express預設以jade作為view engine，在此需要修改一些設定方可使用express之ejs作為view engine，目前專案的檔案結構說明如下：</p>
+<ul>
+<li>app.js: 實際主程式進入點</li>
+<li>package.json: 專案定義檔，含一些版本資訊</li>
+<li>public: 置放靜態檔案處，如javascript, css, image, html檔案等資料</li>
+<li>view: view engine主要讀取資料匣，包含jade的頁面程式，簡單說就是node.js的server端程式位置</li>
+<li>routes: 預設放置專案中router之位置，並且透過export提供給專案載入使用</li>
+</ul>
+<p>修改app.js檔案，增加使用ejs的定義</p>
+<ul>
+<li>首先修改configure區段：</li>
+</ul>
+<pre><code>app.configure(function(){
+  app.set(&#39;views&#39;, __dirname + &#39;/views&#39;);
+  app.set(&#39;view engine&#39;, &#39;ejs&#39;);
+  app.use(express.bodyParser());
+  app.use(express.cookieParser());
+  app.use(express.session({ secret: &quot;keyboard cat&quot; }));
+  app.use(express.methodOverride());
+  app.use(app.router);
+  app.use(express.static(__dirname + &#39;/public&#39;));
+  app.set(&quot;view options&quot;, {layout : true});
+});</code></pre>
+<ul>
+<li>如果希望讓ejs用其他的副檔名，則可以參考下面設定：</li>
+</ul>
+<pre><code>app.set(&quot;view engine&quot;, &quot;html&quot;);
+app.set(&quot;views&quot;, __dirname + &#39;/views&#39;);
+app.register(&quot;html&quot;, ejs);</code></pre>
+<ul>
+<li>然後移除：app.get(&#39;/&#39;, routes.index);</li>
+<li>增加app.get()如下：</li>
+</ul>
+<pre><code>app.get(&#39;/&#39;, function(req, res){
+  res.render(&#39;index&#39;, {
+    title: &#39;Express&#39;
+  });
+});</code></pre>
+<ul>
+<li>在view之下新增layout.ejs檔案(express預設會找尋view下的layout.ejs作為樣板render頁面)</li>
+</ul>
+<pre class="code" data-js="express/index.html"></pre>
+
+
+<ul>
+<li>如欲使用其他樣板，可在router處增加額外樣板資訊 ：</li>
+</ul>
+<pre><code>app.get(&#39;/&#39;, function(req, res){
+  res.render(&#39;index&#39;, {
+    layout:&#39;layout2&#39;,
+    title: &#39;Express&#39;
+  });
+});</code></pre>
+<ul>
+<li>在view下新增index.ejs檔案：</li>
+</ul>
+<pre><code class="language-html">&lt;h1&gt;&lt;%= title %&gt;&lt;/h1&gt; 
+&lt;p&gt;Welcome to &lt;%= title %&gt;&lt;/p&gt;</code></pre>
+<ul>
+<li>啓動server：<br>(首先開啓終端機，進入專案資料匣...)</li>
+</ul>
+<pre><code># node app.js</code></pre>
+<ul>
+<li>檢視執行狀況： <a href="http://localhost:3000">http://localhost:3000</a></li>
+</ul>
+
+  </div>
+
+  <div style="width:960px">
+  <hr/>
+  Powered by OpenNodes
+  </div>
+  </div>
+
+  </body>
+</html>

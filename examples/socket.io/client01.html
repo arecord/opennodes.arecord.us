@@ -1,0 +1,17 @@
+<script src="http://localhost:8080/socket.io/socket.io.js"></script>
+<script src="http://code.jquery.com/jquery-2.0.2.min.js"></script>
+
+<script>
+  //連結socket.io server位置
+  var socket = io.connect('http://localhost:8080');
+  //聽取news event，並在callback中處理
+  socket.on('news', function (data) {
+      console.log('[on news]' + JSON.stringify(data));
+      //將data呈現在下方id=t的h1 tag中
+      $('#t').html(data.time);
+      //觸發server另一個event，並且傳入data
+      socket.emit('my other event', { my: 'data' });
+  });
+</script>
+
+<h1 id="t"></h1>
