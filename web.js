@@ -66,7 +66,7 @@ var server = http.createServer(function (req, res) {
     } catch(e) {
       if(path.endsWith('.ico')) {
         log.trace('ico not found, use default...');
-        var f = fs.readFileSync(__dirname + '/../noder.png');
+        var f = fs.readFileSync(__dirname + '/noder.png');
         logger.record(req, res);
         res.end(f);
       } else if(e.code == 'EISDIR') { 
@@ -84,7 +84,7 @@ var server = http.createServer(function (req, res) {
         log.error('Error %s the path:%s, error code:%s', e.syscall, e.path, e.code);
         res.end(
           mergeTemplate(
-            __dirname+'/../pages/error.html', 
+            __dirname+'/pages/error.html', 
             '<h1>404 Page Not Found</h1><p>'+e+'</p>')
         );
       }
