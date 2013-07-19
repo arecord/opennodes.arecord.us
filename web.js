@@ -2,7 +2,6 @@
 var fs = require('fs')
   , http = require('http')
   , util = require('util')
-  , p = require('commander')
   , _ = require('underscore')
   , pkginfo = JSON.parse(fs.readFileSync(__dirname + '/package.json'))
   , ver = pkginfo.version
@@ -10,19 +9,13 @@ var fs = require('fs')
   , map = require('./lib/mapping')
   , log = logger.logger;
 
-p.version(ver)
-  .option('-i, --host address <ip>', 'Specific host, like 192.168.1.1, default is all ip listened')
-  .option('-p, --port <port>', 'Specific port, like 80,3000,8080, default is 1337')
-  .option('-l, --loglevel <loglevel>', 'Specific log level, generally like: FATAL, ERROR, WARN, INFO, DEBUG, TRACE')
-  .option('-a, --allow <allow file type>', 'Specific the allowed file types that seprate by ",", default is all', list)
-  .option('-d, --deny <deny file type>', 'Specific the denied file types that seprate by ",", default is none', list)
-  .parse(process.argv);
+var p = {}//dummy param
 
 function list(val) {
   return val.split(',');
 }
 
-var port = p.port || 3000 
+var port = process.env.PORT || 3000 
   , host = null
 //  , host = p.host || '0.0.0.0'
   , allow = p.allow || ''
