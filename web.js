@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+//#!/usr/bin/env node
 var fs = require('fs')
   , http = require('http')
   , util = require('util')
@@ -22,7 +22,7 @@ function list(val) {
   return val.split(',');
 }
 
-var port = p.port || 1337 
+var port = p.port || 3000 
   , host = p.host || '0.0.0.0'
   , allow = p.allow || ''
   , deny = p.deny || ''
