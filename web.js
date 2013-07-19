@@ -23,7 +23,8 @@ function list(val) {
 }
 
 var port = p.port || 3000 
-  , host = p.host || '0.0.0.0'
+  , host = null
+//  , host = p.host || '0.0.0.0'
   , allow = p.allow || ''
   , deny = p.deny || ''
   , loglevel = p.loglevel||process.env['LOG_LEVEL']||'INFO';
@@ -141,7 +142,7 @@ log.info('Noder version: %s', ver);
 if(allow) log.trace('Got allowed setting:%s', allow);
 if(deny) log.trace('Got denied setting:%s', deny);
 log.info('Server running at http://%s:%s/', host, port);
-log.info('Using log level: %s (If you want to change, try "export LOV_LEVEL=INFO" in linux or "set LOG_LEVEL=INFO" in windows)', loglevel);
+log.info('Using log level: %s (If you want to change, try "export LOG_LEVEL=INFO" in linux or "set LOG_LEVEL=INFO" in windows)', loglevel);
 
 //TODO: intefrage into nodeutil
 String.prototype.endsWith = function (s) {
