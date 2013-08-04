@@ -51,14 +51,6 @@ app.get('/md/:file', function(req, res){
   res.render('index', {md: mkup(txt)});
 });
 
-app.get('/md/node_modules/:module/:file', function(req, res){
-  var path = util.format('node_modules/%s/%s', req.params.module, req.params.file);
-  var txt = fs.readFileSync(path, 'utf-8');
-  log.info('Got md from module: ' + path);
-  res.render('index', {md: mkup(txt)});
-});
-
-
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
