@@ -13,8 +13,7 @@
     }
   ],
   "engines": {
-    "node": "0.10.x",
-    "npm": "1.2.x"
+    "node": ">= 0.8.0"
   },
   "dependencies": {
     "underscore": "1.4.4",
@@ -29,14 +28,14 @@
     "json2tree": "0.0.2",
     "jsontool": "5.1.3",
     "markdown": "0.4.0",
-    "marked": "0.2.8",
+    "marked": "~0.2.8",
     "mysql": "2.0.0-alpha8",
     "native-dns": "0.4.1",
     "node-promise": "0.5.6",
     "node-uuid": "1.4.0",
     "nodemailer": "0.4.2",
     "noder": "0.0.7",
-    "nodeutil": "0.0.19",
+    "nodeutil": "0.0.27",
     "request": "2.21.0",
     "restify": "2.5.1",
     "riak-js": "0.10.1",
@@ -49,16 +48,15 @@
     "xml2js": "0.2.7"
   },
   "keywords": [
-    "http","server","web"
+    "http",
+    "server",
+    "web"
   ],
   "repository": {
     "type": "git",
     "url": "https://github.com/peihsinsu/noder"
   },
   "main": "index",
-  "engines": {
-    "node": ">= 0.8.0"
-  },
   "directories": {
     "bin": "./bin",
     "lib": "./lib"
