@@ -1,6 +1,5 @@
 var express = require('express')
   , routes = require('./routes')
-  , user = require('./routes/user')
   , http = require('http')
   , path = require('path')
   , util = require('util')
@@ -43,12 +42,25 @@ app.get('/', function(req, res){
   res.render('index', {md: mkup(txt)});
 });
 
-
+var cache = {};
 app.get('/md/:file', function(req, res){
   var path = 'mdfiles/' + req.params.file;
-  var txt = fs.readFileSync(path, 'utf-8');
-  log.info('Got md: ' + path);
-  res.render('index', {md: mkup(txt)});
+  if(!cache[path]) {
+    var txt = fs.readFileSync(path, 'utf-8');
+    cache[path] = txt;
+    log.info('Got md: ' + path);
+    res.render('index', {md: mkup(txt)});
+  } else {
+    log.info('Got md from cache: ' + path);
+    res.render('index', {md: mkup(cache[path])});
+  }
+});
+
+app.post('/flush', function(req, res){
+  log.warn('Got flush request...');
+  cache = {};
+  log.info('Done flush...');
+  res.render('index', {md: 'Flush all cached md files... done.'});
 });
 
 http.createServer(app).listen(app.get('port'), function(){
