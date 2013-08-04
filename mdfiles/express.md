@@ -168,7 +168,14 @@ var express = require('express')
 app.use(partials());
 ```
 
-partial使用上預設是使用layout.ejs作為預設template，因此在未指定時，系統將抓$project/views/layout.ejs檔案作為樣板
+partial使用上預設是使用layout.ejs作為預設template，因此在未指定時，系統將抓$project/views/layout.ejs檔案作為樣板，而需要指定特別樣板時可以在route中這樣使用：
+
+```
+app.get('/test', function(req, res) {
+  ...
+  res.render('page_name', {layout: 'your_layout', obj: 'your objects...'});
+});
+```
 
 ### 設定CORS(Allow Cross Domain JavaScript)
 

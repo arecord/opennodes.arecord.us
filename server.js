@@ -25,6 +25,7 @@ app.use(express.cookieParser('your secret here'));
 app.use(express.session());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
+
 app.use('/node_modules', express.static(path.join(__dirname, 'node_modules')));
 app.use('/examples', express.static(path.join(__dirname, 'examples')));
 app.use('/mdfiles', express.static(path.join(__dirname, 'mdfiles')));
@@ -33,6 +34,15 @@ app.use('/mdfiles', express.static(path.join(__dirname, 'mdfiles')));
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
+
+
+app.get('/', function(req, res){
+  var path = 'README.md';
+  var txt = fs.readFileSync(path, 'utf-8');
+  log.info('Got md: ' + path);
+  res.render('index', {md: mkup(txt)});
+});
+
 
 app.get('/md/:file', function(req, res){
   var path = 'mdfiles/' + req.params.file;
