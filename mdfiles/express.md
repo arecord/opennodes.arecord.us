@@ -146,6 +146,16 @@ Express套件支援簡單的[Basic Authentication](http://en.wikipedia.org/wiki/
 app.use(express.basicAuth(username, password));
 ```
 
+## Express掛載其他靜態資源，並指定起始路徑
+
+一般express專案在建立之初都會給定一個靜態資源folder "/public"，但如果需要給定其他靜態資源資料夾時，則可以再透過express.static指定一個...
+
+```
+app.use('/images', express.static(__dirname + '/images'));
+```
+
+上面透過express.static多指定了一個images的目錄，並掛載在"/images"位置上，因此假設專案目錄下有個images目錄，裡面有個logo.png圖片，則透過http://localhost:3000/images/logo.png就可以存取該資源。
+
 ## View template module - express-partials
 
 新版的express已經將template系統改寫，原本使用在res.render('...', {layout:'somelayout'})需要另外載入[express-partials](https://github.com/publicclass/express-partials)模組方能使用，載入方式如下：
@@ -157,6 +167,8 @@ var express = require('express')
 
 app.use(partials());
 ```
+
+partial使用上預設是使用layout.ejs作為預設template，因此在未指定時，系統將抓$project/views/layout.ejs檔案作為樣板
 
 ### 設定CORS(Allow Cross Domain JavaScript)
 
