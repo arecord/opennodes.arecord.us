@@ -8,6 +8,7 @@ var express = require('express')
   , partials = require('express-partials')
   , nu = require('nodeutil')
   , log = nu.logger.getInstance('server')
+  , mdutil = require('./lib/mdutil')
 
 var app = express();
 
@@ -22,6 +23,12 @@ app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(express.cookieParser('your secret here'));
 app.use(express.session());
+
+app.use(function(req, res, next){
+  res.locals.session = req.session;
+  next();
+});
+
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -34,39 +41,63 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
+function getMenu(req, res, next){
+  if(req.session.menu) {
+    log.info('Get menu from session...');
+  } else {
+    log.info('Reload the menu...');
+    req.session.menu = mdutil.getMenu();
+  }
+  next();
+}
 
-app.get('/', function(req, res){
-  var path = 'README.md';
-  var txt = fs.readFileSync(path, 'utf-8');
-  log.info('Got md: ' + path);
-  res.render('index', {md: mkup(txt)});
+app.get('/', getMenu,
+  function(req, res){
+    var path = 'README.md';
+    var txt = fs.readFileSync(path, 'utf-8');
+    log.info('Got md: ' + path);
+    res.render('index', {
+      md: mkup(txt)
+    });
 });
 
 var cache = {};
-app.get('/md/:file', function(req, res){
+app.get('/md/:file', getMenu, function(req, res){
   var path = 'mdfiles/' + req.params.file;
   if(!cache[path]) {
     var txt = fs.readFileSync(path, 'utf-8');
     cache[path] = txt;
     log.info('Got md: ' + path);
-    res.render('index', {md: mkup(txt)});
+    res.render('index', {
+      md: mkup(txt)
+    });
   } else {
     log.info('Got md from cache: ' + path);
-    res.render('index', {md: mkup(cache[path])});
+    res.render('index', {
+      md: mkup(cache[path])
+    });
   }
 });
 
-app.post('/flush', function(req, res){
+app.post('/flush', getMenu, function(req, res){
   log.warn('Got flush request...');
   cache = {};
   log.info('Done flush...');
+  res.render('index', {
+    md: 'Flush all cached md files... done.'
+  });
+});
+
+app.post('/flush/:file', getMenu, function(req, res){
+  log.warn('Got flush request of %s', req.params.file);
+  delete cache[req.params.file];
+  log.info('Done flush %s', req.params.file);
   res.render('index', {md: 'Flush all cached md files... done.'});
 });
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
-
 
 /**
  * Translate markdown text to html

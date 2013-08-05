@@ -112,14 +112,19 @@
       <div class="row-fluid">
         <div class="span3">
           <div class="well sidebar-nav">
-            
-                    <p id="menu" style="padding-top:10px"></p>
+            <p id="menu" style="padding-top:10px">
+            <% if(session.menu && session.menu.length > 1) { %>
+            <%-session.menu%>
+            <% } else { %>
+            <%-menu%>
+            <% } %>
+            </p>
           </div>
         </div>
             
           <div class="span9">
             <div class="row-fluid">
-                    <div id="page"><%-body%></div>
+              <div id="page"><%-body%></div>
             </div>
           </div>
         </div>
@@ -148,8 +153,9 @@
     <script type="text/javascript" src="/javascripts/marked.js"></script>
     <script type="text/javascript" src="/javascripts/jquery.blockUI.js"></script>
     <script type="text/javascript" src="/javascripts/underscore-min.js"></script>
+    <!--
     <script type="text/javascript" src="/javascripts/menu.js"></script>
-
+    -->
     </script>
     <script src="/assets/js/bootstrap.js">
     </script>
