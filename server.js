@@ -68,18 +68,40 @@ app.get('/md/:file', getMenu, function(req, res){
   var path = 'mdfiles/' + req.params.file;
   if(!cache[path]) {
     var txt = fs.readFileSync(path, 'utf-8');
-    cache[path] = txt;
+    var header = txt.split('\n')[0];
+    var keywords = getKeywords(txt);
+    log.warn(keywords);
+    cache[path] = {txt: txt, header: header };
     log.info('Got md: ' + path);
     res.render('index', {
-      md: mdutil.md2html(txt)
+      md: mdutil.md2html(txt),
+      header: header,
+      keywords: keywords
     });
   } else {
     log.info('Got md from cache: ' + path);
+    var txt = cache[path].txt;
+    var header = txt.split('\n')[0];
+    var keywords = getKeywords(txt);
+    log.warn(keywords);
     res.render('index', {
-      md: mdutil.md2html(cache[path])
+      md: mdutil.md2html(txt),
+      header: header,
+      keywords: keywords
     });
   }
 });
+
+function getKeywords(txt){
+  var lines = txt.split('\n');
+  var out = '';
+  for(var i = 0 ; i < lines.length -1 ; i++) {
+    if(lines[i].startsWith('## ')) {
+      out = out + (out.length > 0 ? ',' : '') + lines[i].replace(/##\ /g,'');
+    }
+  }
+  return out;
+}
 
 app.post('/flush', getMenu, function(req, res){
   log.warn('Got flush request...');

@@ -3,10 +3,10 @@
   <head>
     <meta name="google-site-verification" content="PY2DYXt49xsdyWQpTQu5vE2sYvHVK4x2EQ7uq_K8HqM" />
     <meta charset="utf-8">
-    <title>
-    </title>
+    <title><%if(locals.header){%><%-header%><%}else{%>Opennodes<%}%></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
+    <meta name="description" content="<%if(locals.header){%><%-header%><%}else{%>Opennodes<%}%>">
+    <meta name="keywords" content="Node.js,Opennodes,<%if(locals.keywords){%><%-keywords%><%}else{%>Opennodes<%}%>">
     <meta name="author" content="">
     <!-- Le styles -->
     <link href="/assets/css/bootstrap.css" rel="stylesheet">
@@ -20,12 +20,7 @@
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js">
       </script>
     <![endif]-->
-    <!-- Le fav and touch icons -->
-    <link rel="shortcut icon" href="assets/ico/favicon.ico">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/assets/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/assets/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/assets/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="/assets/ico/apple-touch-icon-57-precomposed.png">
+    
     <style>
     </style>
   </head>
@@ -49,12 +44,7 @@
             
       </script>
     <![endif]-->
-    <!-- Le fav and touch icons -->
-    <link rel="shortcut icon" href="assets/ico/favicon.ico">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/assets/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/assets/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/assets/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="/assets/ico/apple-touch-icon-57-precomposed.png">
+    
     <style>
       #link1 { "data1": "1111", "data2": "2222" }
     </style>
@@ -76,9 +66,9 @@
               <li style="padding-top:5px" >
                 <a href="http://nodejs.tw">台灣Node.js社群</a>
               </li>
-                        <li style="padding-top:5px" >
-                            <a href="http://about.me/peihsinsu">關於作者</a>
-                        </li>
+              <li style="padding-top:5px" >
+                  <a href="http://about.me/peihsinsu">關於作者</a>
+              </li>
 
             </ul>
 
