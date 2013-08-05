@@ -21,8 +21,18 @@
       </script>
     <![endif]-->
     
-    <style>
-    </style>
+    <script>
+    (function() {
+      var cx = '007134565229384796935:elplyzagfxk';
+      var gcse = document.createElement('script');
+      gcse.type = 'text/javascript';
+      gcse.async = true;
+      gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+          '//www.google.com/cse/cse.js?cx=' + cx;
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(gcse, s);
+    })();
+  </script>
   </head>
   <body>
     <meta charset="utf-8">
@@ -61,9 +71,6 @@
                 <a href="/">首頁</a>
               </li>
               <li style="padding-top:5px" >
-                <a href="https://github.com/opennodes/opennodes.github.com">Github位置</a>
-              </li>
-              <li style="padding-top:5px" >
                 <a href="http://nodejs.tw">台灣Node.js社群</a>
               </li>
               <li style="padding-top:5px" >
@@ -81,6 +88,7 @@
             <span class='st_linkedin_large' displayText='LinkedIn'></span>
             <span class='st_email_large' displayText='Email'></span>
             </div>
+
             <!-- Sharethis links end -->
 
           </div>
@@ -91,7 +99,10 @@
     <div class="container-fluid">
       <div class="row-fluid">
         <div class="span3">
-          <div class="well sidebar-nav">
+          <div class="well sidebar-nav" style="padding-top:10px">
+            <div style="height:35px;text-align:left">
+            <gcse:search></gcse:search>
+            </div>
             <p id="menu" style="padding-top:10px">
             <% if(session.menu && session.menu.length > 1) { %>
             <%-session.menu%>
