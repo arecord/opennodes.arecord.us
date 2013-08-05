@@ -9,6 +9,8 @@ var express = require('express')
   , nu = require('nodeutil')
   , log = nu.logger.getInstance('server')
   , mdutil = require('./lib/mdutil')
+  , genrss = require('./bin/gen-rss')
+  , gensitemap = require('./lib/gen-sitemap')
 
 var app = express();
 
@@ -57,7 +59,7 @@ app.get('/', getMenu,
     var txt = fs.readFileSync(path, 'utf-8');
     log.info('Got md: ' + path);
     res.render('index', {
-      md: mkup(txt)
+      md: mdutil.md2html(txt)
     });
 });
 
@@ -69,12 +71,12 @@ app.get('/md/:file', getMenu, function(req, res){
     cache[path] = txt;
     log.info('Got md: ' + path);
     res.render('index', {
-      md: mkup(txt)
+      md: mdutil.md2html(txt)
     });
   } else {
     log.info('Got md from cache: ' + path);
     res.render('index', {
-      md: mkup(cache[path])
+      md: mdutil.md2html(cache[path])
     });
   }
 });
@@ -95,28 +97,17 @@ app.post('/flush/:file', getMenu, function(req, res){
   res.render('index', {md: 'Flush all cached md files... done.'});
 });
 
+//TODO: cache it
+app.get('/rss', function(req, res) {
+  res.end(genrss.toRss());
+});
+
+app.get('/sitemap', function(req, res) {
+  gensitemap.toSiteMap(function(r){
+    res.end(r);
+  });
+});
+
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
-
-/**
- * Translate markdown text to html
- */
-function mkup(txt) {
-  marked.setOptions({
-    gfm: true,
-    tables: true,
-    breaks: true,
-    pedantic: false,
-    sanitize: false,
-    smartLists: true,
-    langPrefix: 'language-',
-    highlight: function(code, lang) {
-      if (lang === 'js') {
-        return highlighter.javascript(code);
-      }
-      return code;
-    }
-  });
-  return marked(txt);
-}

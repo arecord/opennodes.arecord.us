@@ -7,6 +7,7 @@ var fs = require('fs')
   , RSS = require('rss')
   , Author = 'Opennodes'
   , SITE = 'http://peihsinsu.github.io/opennodes'
+  , mdutil = require('../lib/mdutil')
 
 var feedCfg = {
         title: 'Opennodes RSS',
@@ -17,12 +18,6 @@ var feedCfg = {
         author: 'Simon Su'
     };
 
-var treeCfg = JSON.parse(fs.readFileSync(__dirname + '/../mdfiles/Menu.json'));
-toRss(treeCfg, 
-  __dirname + '/../feeds.xml',
-  feedCfg,
-  __dirname + '/../mdfiles',
-  '/Users/simonsu/project/wikitpage-tools/tpls/template.html')
 
 function toRss(treeCfg, feedsFilePath, feedCfg, mdfilefolder, tpl){
   var site = feedCfg.site_url;
@@ -56,7 +51,7 @@ function toRss(treeCfg, feedsFilePath, feedCfg, mdfilefolder, tpl){
       if(!node.link.endsWith('.md')) {
         //By pass for not markdown files
       } else {
-        var content = mkup(fs.readFileSync(mdfilefolder + '/' + node.link, 'utf8'));
+        var content = mdutil.md2html(fs.readFileSync(mdfilefolder + '/' + node.link, 'utf8'));
         content = content.replace(/index\.html\?page=/g, site + '/html/');
         content = content.replace(/index\.html\?/g,site + '/html/');
         content = content.replace(/\.md\"/g, '.html"');
@@ -87,39 +82,16 @@ function toRss(treeCfg, feedsFilePath, feedCfg, mdfilefolder, tpl){
     });
   }
 
-  /**
-   * Write feeds content to file
-   */
-  //console.log(feed.xml());
-  fs.writeFile(feedsFilePath, feed.xml(), 'utf8', function(err){
-    if(err) 
-      console.log(err);
-    else {
-      log.info('Write feeds to file: %s', feedsFilePath);
-      log.info('Processing done without error...');
-    }
-  });
+  return feed.xml();
 }
 
-
-/**
- * Translate markdown text to html
- */
-function mkup(txt) {
-  marked.setOptions({
-    gfm: true,
-    tables: true,
-    breaks: true,
-    pedantic: false,
-    sanitize: false,
-    smartLists: true,
-    langPrefix: 'language-',
-    highlight: function(code, lang) {
-      if (lang === 'js') {
-        return highlighter.javascript(code);
-      }
-      return code;
-    }
-  });
-  return marked(txt);
+function main() {
+  var treeCfg = JSON.parse(fs.readFileSync(__dirname + '/../mdfiles/Menu.json'));
+  return toRss(treeCfg, 
+    __dirname + '/../feeds.xml',
+    feedCfg,
+    __dirname + '/../mdfiles',
+    __dirname + '/template.html');
 }
+exports.toRss = main;
+
