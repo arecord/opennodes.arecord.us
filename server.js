@@ -9,7 +9,7 @@ var express = require('express')
   , nu = require('nodeutil')
   , log = nu.logger.getInstance('server')
   , mdutil = require('./lib/mdutil')
-  , genrss = require('./bin/gen-rss')
+  , genrss = require('./lib/gen-rss')
   , gensitemap = require('./lib/gen-sitemap')
 
 var app = express();
@@ -101,8 +101,16 @@ app.post('/flush/:file', getMenu, function(req, res){
 app.get('/rss', function(req, res) {
   res.end(genrss.toRss());
 });
+app.get('/rss.xml', function(req, res) {
+  res.end(genrss.toRss());
+});
 
 app.get('/sitemap', function(req, res) {
+  gensitemap.toSiteMap(function(r){
+    res.end(r);
+  });
+});
+app.get('/sitemap.xml', function(req, res) {
   gensitemap.toSiteMap(function(r){
     res.end(r);
   });
