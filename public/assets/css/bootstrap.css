@@ -746,6 +746,11 @@ h6 {
   text-rendering: optimizelegibility;
 }
 
+h3 embed {
+  position: relative;
+  top: -16px;
+}
+
 h1 small,
 h2 small,
 h3 small,
