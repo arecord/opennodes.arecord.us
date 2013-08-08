@@ -138,6 +138,40 @@ app.get('/', function(req, res){
 
 # 其他
 
+## 透過Express做下載頁面
+
+下載頁面一般是由Content-disposition與Content-type組成的一個資源頁面，一般我們可以透過下面這段程式碼來做下載的動作：
+
+```
+var path = require('path');
+var mime = require('mime');
+
+app.get('/download', function(req, res){
+
+  var file = __dirname + '/upload-folder/dramaticpenguin.MOV';
+
+  var filename = path.basename(file);
+  var mimetype = mime.lookup(file);
+
+  res.setHeader('Content-disposition', 'attachment; filename=' + filename);
+  res.setHeader('Content-type', mimetype);
+
+  var filestream = fs.createReadStream(file);
+  filestream.pipe(res);
+});
+```
+
+但是在Express中，不用那麼麻煩，只要透過res.download()就可以做下載route了喔～
+
+```
+app.get('/download', function(req, res){
+  var file = __dirname + '/upload-folder/dramaticpenguin.MOV';
+  res.download(file); // Set disposition and send it.
+});
+```
+
+PS: 參考自 http://stackoverflow.com/questions/7288814/download-a-file-from-nodejs-server
+
 ## 設定Basic Authentication
 
 Express套件支援簡單的[Basic Authentication](http://en.wikipedia.org/wiki/Basic_access_authentication)，設定可參考下面範例：
@@ -177,7 +211,7 @@ app.get('/test', function(req, res) {
 });
 ```
 
-### 設定CORS(Allow Cross Domain JavaScript)
+## 設定CORS(Allow Cross Domain JavaScript)
 
 CORS的設定是為了讓JavaScript可以跨網域被呼叫而設立的方式，作法是在Server Response Header加上Access-Control-Allow-Origin等參數，詳細的說明可以參考：[解決Cross Site JavaScript問題](index.html?page=CrossSiteSolv.md)
 
