@@ -1,5 +1,5 @@
 /**
- * 讀取幻境變數中名為PATH的便數值
+ * 讀取還境變數中名為PATH的便數值
  */
 console.log(process.env['PATH']);
 

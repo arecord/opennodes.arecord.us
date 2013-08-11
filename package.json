@@ -47,7 +47,8 @@
     "tty.js": "0.2.10",
     "xml2js": "0.2.7",
     "express-partials": "~0.1.1",
-    "ejs": "~0.8.4"
+    "ejs": "~0.8.4",
+    "forever": "~0.10.8"
   },
   "keywords": [
     "http",

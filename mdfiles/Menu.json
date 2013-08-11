@@ -39,6 +39,7 @@
     "type": "folder",
     "nodes":[
       {"type":"node","link":"express.md","name":"Express"},
+      {"type":"node","link":"ejs.md","name":"Ejs"},
       {"type":"node","link":"socket.io.md","name":"Socket.io"}
     ]
   },
@@ -61,7 +62,8 @@
       {"type":"node","link":"ttyjs.md","name":"tty.js"},
       {"type":"node","link":"xml2js.md","name":"xml2js"},
       {"type":"node","link":"riak-js.md","name":"riak-js"},
-      {"type":"node","link":"log4js.md","name":"log4js"}
+      {"type":"node","link":"log4js.md","name":"log4js"},
+      {"type":"node","link":"forever.md","name":"forever"}
     ]
   },
   { "name": "CLI tools",

@@ -29,6 +29,25 @@ express [專案名稱] && cd [專案名稱] && npm install
 * cd [專案名稱]: 切換到該專案資料夾下
 * npm install: 特該專案將相依的package進行安裝
 
+另外express提供一些額外參數可以設定，讓generater可以進行客製專案：
+
+```
+express --help
+
+  Usage: express [options]
+
+  Options:
+
+    -h, --help          output usage information
+    -V, --version       output the version number
+    -s, --sessions      add session support
+    -e, --ejs           add ejs engine support (defaults to jade)
+    -J, --jshtml        add jshtml engine support (defaults to jade)
+    -H, --hogan         add hogan.js engine support
+    -c, --css <engine>  add stylesheet <engine> support (less|stylus) (defaults to plain css)
+    -f, --force         force on non-empty directory
+```
+
 ### 以下為實際執行範例
 
 ```
@@ -192,28 +211,11 @@ app.use('/images', express.static(__dirname + '/images'));
 
 ## View template module - express-partials
 
-新版的express已經將template系統改寫，原本使用在res.render('...', {layout:'somelayout'})需要另外載入[express-partials](https://github.com/publicclass/express-partials)模組方能使用，載入方式如下：
-
-```
-var express = require('express')
-  , partials = require('express-partials')
-  , app = express();
-
-app.use(partials());
-```
-
-partial使用上預設是使用layout.ejs作為預設template，因此在未指定時，系統將抓$project/views/layout.ejs檔案作為樣板，而需要指定特別樣板時可以在route中這樣使用：
-
-```
-app.get('/test', function(req, res) {
-  ...
-  res.render('page_name', {layout: 'your_layout', obj: 'your objects...'});
-});
-```
+請參考：[EJS](/md/ejs.md)
 
 ## 設定CORS(Allow Cross Domain JavaScript)
 
-CORS的設定是為了讓JavaScript可以跨網域被呼叫而設立的方式，作法是在Server Response Header加上Access-Control-Allow-Origin等參數，詳細的說明可以參考：[解決Cross Site JavaScript問題](index.html?page=CrossSiteSolv.md)
+CORS的設定是為了讓JavaScript可以跨網域被呼叫而設立的方式，作法是在Server Response Header加上Access-Control-Allow-Origin等參數，詳細的說明可以參考：[解決Cross Site JavaScript問題](/md/CrossSiteSolv.md)
 
 ```
 //CORS middleware
