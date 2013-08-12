@@ -1,7 +1,7 @@
 Loop in Non-Block
 ====
 
-在Node.js的Non-Block機制在操作上常常困擾開發者，很多循序的操作，在No-Block中變得不循序而變得無法去控制... 這邊介紹幾種常用的Loop操作流程的方式... 在這之前，另一篇提到的[迴圈](http://opennodes.github.io/wiki/index.html?page=BasicOperation.md)可以先複習一下
+在Node.js的Non-Block機制在操作上常常困擾開發者，很多循序的操作，在No-Block中變得不循序而變得無法去控制... 這邊介紹幾種常用的Loop操作流程的方式... 在這之前，另一篇提到的[迴圈](http://opennodes.arecord.us/md/BasicOperation.md)可以先複習一下
 
 ## 傳統for loop處理
 
