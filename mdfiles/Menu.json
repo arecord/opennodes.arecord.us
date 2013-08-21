@@ -48,7 +48,10 @@
     "nodes":[
       {"type":"node","link":"domain.md","name":"domain"},
       {"type":"node","link":"native-dns.md","name":"native-dns"},
+      {"type":"node","link":"zombie.md","name":"zombie"},
+      {"type":"node","link":"phantomjs.md","name":"phantomjs"},
       {"type":"node","link":"jsdom.md","name":"jsdom"},
+      {"type":"node","link":"cheerio.md","name":"cheerio"},
       {"type":"node","link":"nodemailer.md","name":"nodemailer"}
     ]
   },

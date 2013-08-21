@@ -48,7 +48,9 @@
     "xml2js": "0.2.7",
     "express-partials": "~0.1.1",
     "ejs": "~0.8.4",
-    "forever": "~0.10.8"
+    "forever": "~0.10.8",
+    "cheerio": "~0.12.1",
+    "zombie": "~2.0.0-alpha20"
   },
   "keywords": [
     "http",
