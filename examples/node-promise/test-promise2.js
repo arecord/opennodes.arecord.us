@@ -5,7 +5,7 @@ var defered = require("node-promise").defer();
 
 var p = new Promise();
 
-function step1(fn){
+function step1(){
   request({
     url : "http://www.google.com",
     method : "GET"
@@ -19,7 +19,7 @@ function step1(fn){
 step1();
 defered.then(function(result){
     console.log('>>2');
-    console.log(result.substring(0,50));
+    console.log('word count:%s', result.length);
   },
   function(err){
     console.log(err);

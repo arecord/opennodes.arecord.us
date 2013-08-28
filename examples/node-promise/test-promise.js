@@ -3,7 +3,7 @@ var Promise = require("node-promise").Promise
 
 var p = new Promise();
 
-function step1(fn){
+function step1(){
   request({
     url : "http://www.google.com",
     method : "GET"
@@ -17,8 +17,7 @@ function step1(fn){
 step1();
 p.then(function(d){
     console.log('>>2');
-//    console.log(arguments);
-    console.log(d.substring(0,50));
+    console.log('word count:%s', d.length);
   },
   function(err){
     console.log(err);
