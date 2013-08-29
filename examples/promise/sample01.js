@@ -8,10 +8,3 @@ var Promise = require('promise');
 //   });
 //   console.log('end...');
 // });
-
-module.exports = Promise.nodeify(awesomeAPI)
-function awesomeAPI(a, b) {
-  return download(a, b)
-}
-
-this.awesomeAPI(1111,222);
