@@ -32,7 +32,8 @@
     "nodes":[
       {"type":"node","link":"step.md","name":"step"},
       {"type":"node","link":"node-promise.md","name":"node-promise"},
-      {"type":"node","link":"q.md","name":"q"}
+      {"type":"node","link":"q.md","name":"q"},
+      {"type":"node","link":"async.md","name":"async"}
     ]
   },
   { "name": "Web Framework",
