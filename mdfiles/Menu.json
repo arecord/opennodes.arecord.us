@@ -22,7 +22,7 @@
     "nodes":[
       {"type":"node","link":"request.md","name":"request"},
       {"type":"node","link":"restify.md","name":"restify"},
-      {"type":"node","link":"restClient.md","name":"restClient"},
+      {"type":"node","link":"rest-client.md","name":"rest-client"},
       {"type":"node","link":"connect.md","name":"connect"},
       {"type":"node","link":"soap.md","name":"soap"}
     ]

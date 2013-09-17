@@ -54,7 +54,8 @@
     "promise": "~3.2.0",
     "async": "~0.2.9",
     "sqlite3": "~2.1.15",
-    "connect": "~2.9.0"
+    "connect": "~2.9.0",
+    "rest-client": "~0.1.5"
   },
   "keywords": [
     "http",
