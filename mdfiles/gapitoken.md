@@ -13,18 +13,13 @@ gapitoken是使用Node.js實作Oauth2認證的一個模組，透過API console�
 npm install gapitoken
 ```
 
-## 準備API pem key
-
-從API console下載的key為副檔名p12的key，需要透過openssl轉換為pem key
-
-```
-$ openssl pkcs12 -in privatekey.p12 -out privatekey.pem -nocerts
-$ openssl rsa -in privatekey.pem -out key.pem
-```
-
 ## 使用說明
 
-準備連線需要的資訊
+準備連線需要的資訊，其中iss為當初申請service account時候的所給的Email address，如下圖：
+
+<img src="/images/gserviceaccount.png"/>
+
+而Scope是Google控制存取API的呼叫權限，不同的API或不同的request有不同的scope要給予，才可以做呼叫動作，最後，key.pem是創立service account時候所給予的p12檔案，透過ssl轉換後的檔案...
 
 ```
 var opts = {
@@ -32,6 +27,15 @@ var opts = {
     scope: 'https://www.googleapis.com/auth/bigquery https://www.googleapis.com/auth/cloud-platform',
     keyFile: __dirname + '/key.pem'
 };
+```
+
+## 準備API pem key
+
+從API console下載的key為副檔名p12的key，需要透過openssl轉換為pem key
+
+```
+$ openssl pkcs12 -in privatekey.p12 -out privatekey.pem -nocerts
+$ openssl rsa -in privatekey.pem -out key.pem
 ```
 
 透過GAPI物件，進行Auth連線動作，實際token可以gapi.getToken()的callback中取得...
