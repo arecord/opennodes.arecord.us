@@ -121,7 +121,7 @@ res.render('index', { title: 'my express page' })
 解決方式，直接使用locals來判斷裡面是否有user這個變數...，因此改寫上面的判斷後：
 
 ```
-<% if(locales['user']) { .... %>
+<% if(locals['user']) { .... %>
 ```
 
 應該就可以正常運作...
