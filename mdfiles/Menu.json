@@ -95,6 +95,12 @@
       {"type":"node","link":"smartdc.md","name":"smartdc"}
     ]
   },
+  { "name": "Google API相關",
+    "type": "folder",
+    "nodes":[
+      {"type":"node","link":"gapitoken.md","name":"gapitoken"}
+    ]
+  },
   { "name": "Other",
     "type": "folder",
     "nodes":[
