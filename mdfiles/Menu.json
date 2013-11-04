@@ -41,6 +41,7 @@
     "nodes":[
       {"type":"node","link":"express.md","name":"Express"},
       {"type":"node","link":"express&flow.md","name":"Express流程控制"},
+      {"type":"node","link":"connect-couchdb.md","name":"Express Session:connect-couchdb"},
       {"type":"node","link":"ejs.md","name":"Ejs"},
       {"type":"node","link":"socket.io.md","name":"Socket.io"}
     ]
