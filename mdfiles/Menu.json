@@ -14,7 +14,8 @@
       {"type":"node","link":"NodeInBash.md","name":"Node.js與Bash混用"},
       {"type":"node","link":"NodeJSResource.md","name":"學習資源介紹"},
       {"type":"node","link":"LoopInNonBlock.md","name":"Loop in non-Block"},
-      {"type":"node","link":"TimeoutAndInterval.md","name":"Timeout & Interval"}
+      {"type":"node","link":"TimeoutAndInterval.md","name":"Timeout & Interval"},
+      {"type":"node","link":"ProcessPipe.md","name":"Std IO Pipe"}
     ]
   },
   { "name": "HTTP(S) Modules",
