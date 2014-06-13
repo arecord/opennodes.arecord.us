@@ -58,7 +58,10 @@
     "rest-client": "~0.1.5",
     "readline": "0.0.3",
     "gapitoken": "~0.1.0",
-    "connect-couchdb": "~0.4.1"
+    "connect-couchdb": "~0.4.1",
+    "googleapis": "~0.7.0",
+    "bigquery": "0.0.3",
+    "google-api-utility": "0.0.5"
   },
   "keywords": [
     "http",
