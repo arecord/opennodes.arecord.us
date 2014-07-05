@@ -94,13 +94,13 @@
   { "name": "CloudAPI",
     "type": "folder",
     "nodes":[
-      {"type":"node","link":"smartdc.md","name":"smartdc"}
+      {"type":"node","link":"smartdc.md","name":"smartdc"},
+      {"type":"node","link":"googleapis.md","name":"googleapis"},
     ]
   },
   { "name": "Google API相關",
     "type": "folder",
     "nodes":[
-      {"type":"node","link":"googleapis.md","name":"googleapis"},
       {"type":"node","link":"google-api-utility.md","name":"google-api-utility"},
       {"type":"node","link":"bigquery.md","name":"bigquery"},
       {"type":"node","link":"gapitoken.md","name":"gapitoken"}
