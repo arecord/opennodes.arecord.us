@@ -95,7 +95,7 @@
     "type": "folder",
     "nodes":[
       {"type":"node","link":"smartdc.md","name":"smartdc"},
-      {"type":"node","link":"googleapis.md","name":"googleapis"},
+      {"type":"node","link":"googleapis.md","name":"googleapis"}
     ]
   },
   { "name": "Google API相關",
